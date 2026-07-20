@@ -1,8 +1,18 @@
 #!/usr/bin/env node
 
+import { COMMANDS } from "./commands/index.js";
+import { isCommand } from "./validation/isCommand.js";
+
 async function main() {
   const [, , command, ...commandArgs] = process.argv;
-  console.log(`command is = ${command}, args = ${commandArgs[0]}`);
+
+  if (!command || !isCommand(command)) {
+    console.error(`Invalid command`);
+    process.exit(1);
+  }
+
+  const commandHandler = COMMANDS[command];
+  await commandHandler(commandArgs);
 }
 
 try {
