@@ -6,7 +6,11 @@
   "type": "module",
   "scripts": {
     "build": "tsc",
+    "watch": "tsc --watch",
     "dev": "node --watch dist/index.js"
+  },
+  "bin": {
+    "pomodoro": "./dist/index.js"
   },
   "keywords": [],
   "author": "",
