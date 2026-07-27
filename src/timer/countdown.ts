@@ -1,13 +1,14 @@
 type CountdownOptions = {
-  onTick: (remainingSeconds: number) => void;
+  onTick: (totalSeconds: number, remainingSeconds: number) => void;
   onComplete?: () => void;
 };
 
-export function runCountdown(totalSeconds: number, options: CountdownOptions) {
+export function runCountdown(seconds: number, options: CountdownOptions) {
+  const totalSeconds = seconds;
   function tick() {
-    options.onTick(totalSeconds);
-    totalSeconds--;
-    if (totalSeconds < 0) {
+    options.onTick(totalSeconds, seconds);
+    seconds--;
+    if (seconds < 0) {
       clearInterval(intervalId);
       options.onComplete?.();
     }
