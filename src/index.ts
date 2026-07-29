@@ -1,10 +1,15 @@
 #!/usr/bin/env node
 
+import { help } from "./commands/help.js";
 import { COMMANDS } from "./commands/index.js";
 import { isCommand } from "./validation/isCommand.js";
 
 async function main() {
   const [, , command, ...commandArgs] = process.argv;
+
+  if (command === "help") {
+    help();
+  }
 
   if (!command || !isCommand(command)) {
     console.error(`Invalid command`);
