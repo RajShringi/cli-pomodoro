@@ -4,3 +4,7 @@ export function formatTime(totalSeconds: number) {
 
   return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
 }
+
+export function getRandomMessage(messages: string[]) {
+  return messages[Math.floor(Math.random() * messages.length)];
+}
